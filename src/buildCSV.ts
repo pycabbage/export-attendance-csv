@@ -7,10 +7,12 @@ export class CSV<
 > {
   headers: H;
   rows: R[];
+  isTSV: boolean;
 
-  constructor(headers: H) {
+  constructor(headers: H, isTSV: boolean) {
     this.headers = headers;
     this.rows = [];
+    this.isTSV = isTSV;
   }
 
   add(row: R): this
@@ -29,9 +31,10 @@ export class CSV<
   }
 
   toString(): string {
+    const sep = this.isTSV ? "\t" : ",";
     return [
-      this.headers.join(","),
-      ...this.rows.map(row => row.join(","))
+      this.headers.join(sep),
+      ...this.rows.map(row => row.join(sep))
     ].join("\n");
   }
 }

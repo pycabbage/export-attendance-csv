@@ -8,22 +8,24 @@ const ZBannerOption = z.object({
   author: z.string(),
   match: z.string(),
   icon: z.string(),
-  grant: z.string()
+  grant: z.string(),
+  updateURL: z.string().optional(),
+  downloadURL: z.string().optional(),
+  supportURL: z.string().optional(),
 })
 type TBannerOption = z.infer<typeof ZBannerOption>
-
-export const dateISO = () => new Date()
-  .toLocaleDateString("ja-JP", {
-    year: "numeric",
-    month: "2-digit",
-    day: "2-digit"
-  })
-  .replaceAll('/', '-')
 
 const defaultOptions: TBannerOption = {
   name: "New Userscript",
   namespace: "http://tampermonkey.net/",
-  version: dateISO(),
+  /** YYYY-MM-DD */
+  version: new Date()
+    .toLocaleDateString("ja-JP", {
+      year: "numeric",
+      month: "2-digit",
+      day: "2-digit"
+    })
+    .replaceAll('/', '-'),
   description: "try to take over the world!",
   author: "You",
   match: "http://*/*",
