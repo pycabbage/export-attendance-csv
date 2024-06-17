@@ -28,6 +28,45 @@ const exportCSV = z.function(
   return csv.toString()
 })
 
-function main() {
-  
+function addLinkButton(href: string) {
+  const button = document.createElement("button")
+  button.className = "att-button size-md color-secondary"
+  button.textContent = "CSVエクスポート"
+  button.setAttribute("data-v-02fdb069", "")
+  const link = document.createElement("a")
+  link.className = "tw-mr-8 tw-flex tw-items-center"
+  link.href = href
+  link.download = `${generateFilename()}.csv`
+  link.appendChild(button)
+  document.querySelector("div > div.att-pc")?.prepend(link)
 }
+
+function generateFilename() {
+  const nameEl: HTMLPreElement | null = document.querySelector("div>div>p")
+  if (!nameEl) return
+  return `日時勤怠_${nameEl.textContent}`
+}
+
+function createBlobURL() {
+  const attendanceDataStr = document.querySelector("div[data-aggregation-tables-props]")?.getAttribute("data-daily-attendances-table-props")
+  if (!attendanceDataStr) return
+  const attendanceData = JSON.parse(attendanceDataStr)
+  const csvStr = exportCSV(attendanceData)
+
+  const blob = new Blob([csvStr], {type: "text/csv"})
+  const url = URL.createObjectURL(blob)
+  return url
+}
+
+function main() {
+  const blobURL = createBlobURL()
+  if (!blobURL) return
+  addLinkButton(blobURL)
+}
+
+// declare global {
+//   interface Window { exportCSV(): void }
+// }
+
+// window.exportCSV = main
+window.addEventListener("load", main)

@@ -1,5 +1,0 @@
-{
-  "name": "MF勤怠をCSVにエクスポート",
-  "description": "MF勤怠をCSVにエクスポート",
-  "match": "https://attendance.moneyforward.com/my_page/attendances"
-}
