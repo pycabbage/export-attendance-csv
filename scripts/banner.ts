@@ -15,18 +15,17 @@ const ZBannerOption = z.object({
 })
 type TBannerOption = z.infer<typeof ZBannerOption>
 
-export const dateISO = () => new Date()
-  .toLocaleDateString("ja-JP", {
-    year: "numeric",
-    month: "2-digit",
-    day: "2-digit"
-  })
-  .replaceAll('/', '-')
-
 const defaultOptions: TBannerOption = {
   name: "New Userscript",
   namespace: "http://tampermonkey.net/",
-  version: dateISO(),
+  /** YYYY-MM-DD */
+  version: new Date()
+    .toLocaleDateString("ja-JP", {
+      year: "numeric",
+      month: "2-digit",
+      day: "2-digit"
+    })
+    .replaceAll('/', '-'),
   description: "try to take over the world!",
   author: "You",
   match: "http://*/*",
