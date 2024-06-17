@@ -7,7 +7,7 @@ import { env } from "process"
 await build({
   bundle: true,
   entryPoints: ["src/index.ts"],
-  outfile: "dist/index.user.js",
+  outfile: "dist/export-attendance-csv.user.js",
   platform: "browser",
   plugins: [swcPlugin({
     minify: env.NODE_ENV === "production",
