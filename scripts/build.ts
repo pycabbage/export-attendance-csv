@@ -19,7 +19,10 @@ await build({
       name: "MF勤怠をCSVにエクスポート",
       description: "MF勤怠をCSVにエクスポート",
       version: `${packageJson.version}${env.NODE_ENV !== "production" ? `-dev-${dateISO() }` : ""}`,
-      match: "https://attendance.moneyforward.com/my_page/attendances"
+      match: "https://attendance.moneyforward.com/my_page/attendances",
+      updateURL: "https://github.com/pycabbage/export-attendance-csv/releases/latest/download/export-attendance-csv.user.js",
+      downloadURL: "https://github.com/pycabbage/export-attendance-csv/releases/latest/download/export-attendance-csv.user.js",
+      supportURL: "https://github.com/pycabbage/export-attendance-csv"
     }) + "\n"
   }
 } as BuildOptions)

@@ -8,7 +8,10 @@ const ZBannerOption = z.object({
   author: z.string(),
   match: z.string(),
   icon: z.string(),
-  grant: z.string()
+  grant: z.string(),
+  updateURL: z.string().optional(),
+  downloadURL: z.string().optional(),
+  supportURL: z.string().optional(),
 })
 type TBannerOption = z.infer<typeof ZBannerOption>
 
