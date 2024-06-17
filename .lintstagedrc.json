@@ -1,0 +1,3 @@
+{
+  "*.{ts,tsx}": "corepack pnpm lint:fix"
+}
