@@ -18,7 +18,7 @@ await build({
     js: createBanner({
       name: "MF勤怠をCSVにエクスポート",
       description: "MF勤怠をCSVにエクスポート",
-      version: `${packageJson.version}-${dateISO()}${env.NODE_ENV !== "production" ? "-dev" : ""}`,
+      version: `${packageJson.version}${env.NODE_ENV !== "production" ? `-dev-${dateISO() }` : ""}`,
       match: "https://attendance.moneyforward.com/my_page/attendances"
     }) + "\n"
   }
